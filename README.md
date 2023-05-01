@@ -43,8 +43,10 @@ Full parameter list for buildIgraphs():
 showTOMhubs=FALSE        # default is FALSE if not set. Calculates adjacency and TOM for exact determination of top coexpression-based network edges;
                          # a second plot on each page will show these hubs in isolation.
 power=8                  # network power beta for adjacency calculation; this is needed if showTOMhubs=TRUE
+
 keepTopEdges=150         # default is 150 if not set.  This many edges are plotted as grey connections between nodes. TOM value ties may increase the count.
-keepTopPercentEdges=NULL # 5 to 20, typically, for pulling hubs together in second same-page iGraphs with Fruchterman-Reingold layout; overrides keepTopEdges setting
+# - OR -
+#keepTopPercentEdges=5   # 5 to 20, typically, for pulling hubs together in second same-page iGraphs with Fruchterman-Reingold layout; overrides keepTopEdges setting
 
 parallelThreads=4        # needed if PPIedges=TRUE; set to # of threads (-1) on your computer
 #####################
