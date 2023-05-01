@@ -24,7 +24,7 @@ parallelThreads=31       # needed if PPIedges=TRUE; set to # of threads on your 
 PPIedges=TRUE            # total time to map ~800000 bioGRID binary PPIs to the 44 modules is ~40 minutes.
                          # use FALSE for a faster output.
 showTOMhubs=TRUE         # calculates TOM from cleanDat, so that hubs can be found and shown on a second graph for each module.
-                         # the second graph uses Fruchterman-Reingold layout and only nodes with a TOM value calculated by WGCNA
+                         # the second graph uses Fruchterman-Reingold layout and only nodes with an edge TOM value calculated by WGCNA
                          # that is equal to or greater than the Nth top such edge. Default N=150. See full parameter list to change.
 
 source("buildIgraphs.R")
