@@ -64,7 +64,7 @@ GOIlist<- c()            # Genes of interest to highlight-could be all RNA bindi
                          # ...they get highlighted yellow, or cyan if the module is yellow.
 vertexsize=16            # 8 for regular, 16 for large balls
 #####################
-outFilePrefix="4",         # typically "4", or step # in pipeline being run
+outFilePrefix="4"          # typically "4", or step # in pipeline being run
 outFileSuffix=FileBaseName # A description of the project, used as a filename suffix
 ############################################################################################
 ```
