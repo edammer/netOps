@@ -8,13 +8,13 @@ Additional network visualization routine functions will be added to this reposit
 Simple Wrapper for buildIgraphs():
 (All variables set in global environment, but defaults are tried if none are specified).
 ```
-load("e:/OneDrive/SystemsBioPipeline/MEGA488_forORA.RData")
+unzip("sampleInput.zip")  # Download from this repo; contains net.csv and cleanDat.csv as loaded below, for sample input
 
 rootdir="e:/OneDrive/SystemsBioPipeline/"
 setwd(rootdir)
 
-cleanDat=cleanDatMEGA
-net<-netMEGA
+cleanDat=read.csv("cleanDat.csv",header=TRUE,row.names=1)
+net<-as.list(read.csv("net.csv",header=TRUE))
 
 
 outFileSuffix="MEGATMT_NatNeuro2022-44mods+PPIs"
