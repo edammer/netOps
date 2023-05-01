@@ -2,10 +2,12 @@
 Network Operations for Systems Biology
 
 <b>buildIgraphs</b> - Build network graphs for your modules from the Seyfried Systems Biology pipeline.
+<img SRC="https://github.com/edammer/netOps/blob/main/M33iGraphs+PPIs.JPG?raw=true">
 
-Additional network visualization routine functions will be added to this repository later.
+<i>Additional network visualization routine functions will be added to this repository later.</i>
+<HR>
+<b>Simple Wrapper for buildIgraphs():</b>
 
-Simple Wrapper for buildIgraphs():
 (All variables set in global environment, but defaults are tried if none are specified).
 ```
 unzip("sampleInput.zip")  # Download from this repo; contains net.csv and cleanDat.csv as loaded below, for sample input
