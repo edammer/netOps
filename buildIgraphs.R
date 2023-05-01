@@ -377,9 +377,10 @@ buildIgraphs <- function(dummyVar="", env=.GlobalEnv) {
     
     ## FIND EDGES OVERLAPPING WITH BIOGRID PAIRS
     if(!firstPDFdone) listboldEdges[[mod]]<-matrix(ncol=2,nrow=0)
-    if(nrow(bioGrid)>1) {
-      noPPIfound.thisMod=FALSE # reset this flag
     
+    noPPIfound.thisMod=FALSE # (re)set this flag
+
+    if(nrow(bioGrid)>1) {
       ## non-parallel (slow) version of below collection of PPI (bold) edges with nested parSapply, sapply...
       #for(i in 1:numgenesingraph) {
       # for(j in i:numgenesingraph) {
