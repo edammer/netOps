@@ -10,10 +10,10 @@ Network Operations for Systems Biology
 
 (All variables set in global environment, but defaults are tried if none are specified).
 ```
-unzip("sampleInput.zip")  # Download from this repo; contains net.csv and cleanDat.csv as loaded below, for sample input
-
 rootdir="e:/OneDrive/SystemsBioPipeline/"
 setwd(rootdir)
+
+unzip("sampleInput.zip")  # Download from this repo; contains net.csv and cleanDat.csv as loaded below, for sample input
 
 cleanDat=read.csv("cleanDat.csv",header=TRUE,row.names=1)
 net<-as.list(read.csv("net.csv",header=TRUE))
