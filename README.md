@@ -54,7 +54,7 @@ PPIedges=TRUE            # Draw bold edges for PPIs in your network modules. TRU
 myHumanBioGrid.tsvFile = "nonexistent.file"
                          # "BIOGRID-ORGANISM-Homo_sapiens-4.4.219.mitab.HUMANsimple.txt" #v4.4.219 downloaded 3/21/2023; ONLY NEEDED IF PPIedges=TRUE
                          # This file is generated from a bioGRID.org download of the current release if needed but not found.
-species="human"          # current option "mouse" will convert bioGRID to mouse symbols before drawing PPI edges in your network.
+netSpecies="human"       # current option "mouse" will convert bioGRID to mouse symbols before drawing PPI edges in your network. Otherwise ignored.
 boldEdgeColor=paste0(gplots::col2hex("darkslateblue"),"66")
                          #"66" makes the color transparent, about 30-40%; only used if PPIedges=TRUE
 symbols2Add=c()          # If non-blank, must specify exactly 4 gene symbols. Interactions to these extra nodes (not necessarily in the modules)
