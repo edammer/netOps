@@ -124,7 +124,7 @@ buildIgraphs <- function(dummyVar="", env=.GlobalEnv) {
   
   if (!exists("showAllPPIs")) showAllPPIs=FALSE
   if (!exists("boldEdgeColor")) boldEdgeColor="#483D8B66"   #darkslateblue, "66" makes the color transparent, about 30-40%; only used if PPIedges=TRUE
-  if (!exists("species")) { cat(" - Variable species not specified. Assuming human symbols are in your network.\n   You can specify species='mouse' for conversion of BioGRID PPIs to mouse for PPI mapping.\n"); species="human"; }
+  if (!exists("netSpecies")) { cat(" - Variable species not specified. Assuming human symbols are in your network.\n   You can specify netSpecies='mouse' for conversion of BioGRID PPIs to mouse for PPI mapping.\n"); netSpecies="human"; }
 
   suppressPackageStartupMessages(require(igraph,quietly=TRUE))
   suppressPackageStartupMessages(require(RColorBrewer,quietly=TRUE))
@@ -163,7 +163,7 @@ buildIgraphs <- function(dummyVar="", env=.GlobalEnv) {
   if (PPIedges==FALSE) { bioGrid<-data.frame(From=c(1),To=c(1)) }  # skip bolding edges for PPIs from BioGrid
   #------
   
-  if (species=="mouse" & PPIedges) {
+  if (netSpecies=="mouse" & PPIedges) {
     cat(" - Starting biomaRt conversion of Symbols to Human for PPI mapping.\n")
     suppressPackageStartupMessages(require(biomaRt,quietly=TRUE))
     human = useEnsembl("genes", dataset="hsapiens_gene_ensembl", host="https://dec2021.archive.ensembl.org")
