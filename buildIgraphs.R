@@ -13,6 +13,7 @@ buildIgraphs <- function(dummyVar="", env=.GlobalEnv) {
   if (!exists("vertexsize")) { cat(" - vertexsize not specified. Using 16 for large nodes.\n"); vertexsize=16; }
   if (showTOMhubs & !is.numeric(power)) { cat(" - showTOMhubs=TRUE, but we need a power to calculate TOM. Trying power=8.\n"); power=8; }
   if (!exists("PPIedges")) { cat(" - not using PPIedges from BioGRID.\n"); PPIedges=FALSE; } else {
+    if(PPIedges) {
     if(!exists("myHumanBioGrid.tsvFile")) myHumanBioGrid.tsvFile="nonexistent.file"
     if(!file.exists(myHumanBioGrid.tsvFile))  {
       if (interactive()) {
@@ -69,6 +70,15 @@ buildIgraphs <- function(dummyVar="", env=.GlobalEnv) {
 
         Ez2Symbol<-getBM(attributes=c("hgnc_symbol","entrezgene_id"), filters="entrezgene_id", values=entrez.uniqueVec, mart=human, uniqueRows=TRUE)
         Ez2Symbol$entrezgene_id<-as.character(Ez2Symbol$entrezgene_id)
+
+#        # lookup in 3 parts, in case server is swamped -- to avoid timeout over 10 sec.
+#        vecSplitPos1=ceiling(length(entrez.uniqueVec)/3)
+#        vecSplitPos2=ceiling(length(entrez.uniqueVec)/3*2)
+#        Ez2Symbol<-getBM(attributes=c("hgnc_symbol","entrezgene_id"), filters="entrezgene_id", values=entrez.uniqueVec[1:vecSplitPos1], mart=human, uniqueRows=TRUE)
+#        Ez2Symbol2<-getBM(attributes=c("hgnc_symbol","entrezgene_id"), filters="entrezgene_id", values=entrez.uniqueVec[(vecSplitPos1+1):vecSplitPos2], mart=human, uniqueRows=TRUE)
+#        Ez2Symbol3<-getBM(attributes=c("hgnc_symbol","entrezgene_id"), filters="entrezgene_id", values=entrez.uniqueVec[(vecSplitPos2+1):length(entrez.uniqueVec)], mart=human, uniqueRows=TRUE)
+#        Ez2Symbol<-unique(as.data.frame(rbind(Ez2Symbol,Ez2Symbol2,Ez2Symbol3)))
+#        Ez2Symbol$entrezgene_id<-as.character(Ez2Symbol$entrezgene_id)
   
         suppressPackageStartupMessages(require(doParallel,quietly=TRUE))
         if (!exists("parallelThreads")) { cat (" - parallelThreads not set. Trying with 4.\n"); parallelThreads=4; }
@@ -121,6 +131,8 @@ buildIgraphs <- function(dummyVar="", env=.GlobalEnv) {
       } else { stop(paste0("This is not an interactive session and required binary PPI file specified in variable myHumanBioGrid.tsvFile not found.\nThis file is created via processing after selecting a human organism-specific mitab.txt in a .ZIP file download from https://thebiogrid.org .\n\n")) }
     }
   }
+  }
+
   
   if (!exists("showAllPPIs")) showAllPPIs=FALSE
   if (!exists("boldEdgeColor")) boldEdgeColor="#483D8B66"   #darkslateblue, "66" makes the color transparent, about 30-40%; only used if PPIedges=TRUE
@@ -524,3 +536,4 @@ buildIgraphs <- function(dummyVar="", env=.GlobalEnv) {
   
   } # for (CAIRO in c(TRUE,FALSE)) loop... <repeat>
 } # close buildIgraphs()
+
