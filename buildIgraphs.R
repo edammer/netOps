@@ -248,10 +248,10 @@ buildIgraphs <- function(dummyVar="", env=.GlobalEnv) {
   
   for (CAIRO in c(TRUE,FALSE)) {
     if (CAIRO) {
-      CairoPDF(file=paste0("./",outFilePrefix,"iGraph_Modules-",FileBaseName,"-CAIRO-",if(!recalcMEs) { "noMErecalc" }, if(showTOMhubs) {"withTOMhubs"}, ".pdf"),width= if(showTOMhubs) {32} else {16}, height=12)
+      CairoPDF(file=paste0("./",outFilePrefix,"iGraph_Modules-",outFileSuffix,"-CAIRO-",if(!recalcMEs) { "noMErecalc" }, if(showTOMhubs) {"withTOMhubs"}, ".pdf"),width= if(showTOMhubs) {32} else {16}, height=12)
       } else {
         cat("\n - Replotting above iGraphs in non-Cairo version of PDF output...\n")
-        pdf(paste0("./",outFilePrefix,"iGraph_Modules-",FileBaseName,"-nonCAIRO-",if(!recalcMEs) { "noMErecalc" }, if(showTOMhubs) {"withTOMhubs"}, ".pdf"),height=9,width= if(showTOMhubs) {20} else {10})
+        pdf(paste0("./",outFilePrefix,"iGraph_Modules-",outFileSuffix,"-nonCAIRO-",if(!recalcMEs) { "noMErecalc" }, if(showTOMhubs) {"withTOMhubs"}, ".pdf"),height=9,width= if(showTOMhubs) {20} else {10})
       }
     
     if(showTOMhubs) par(mfrow=c(1,2))
@@ -536,4 +536,3 @@ buildIgraphs <- function(dummyVar="", env=.GlobalEnv) {
   
   } # for (CAIRO in c(TRUE,FALSE)) loop... <repeat>
 } # close buildIgraphs()
-
