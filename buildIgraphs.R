@@ -424,14 +424,15 @@ buildIgraphs <- function(dummyVar="", env=.GlobalEnv) {
       if (PPIedges) {
         if (length(nrow(listboldEdges[[mod]]))>0) {
           if (nrow(listboldEdges[[mod]])>0) { 
-            for(i in nrow(listboldEdges[[mod]]):1) {
-              if (i<=nrow(listboldEdges[[mod]])) {
-                if(listboldEdges[[mod]][i,1]==listboldEdges[[mod]][i,2]) {  #identify self-loop
-                  listboldEdges[[mod]] <-listboldEdges[[mod]][-i,]
-                  #if (!length(nrow(listboldEdges[[mod]]))>0) { 
-                  #  cat('NO PPI FOUND FOR THIS MODULE.\n')
-                  #  break #HANDLE NO BOLD EDGES CASE
-                  #}
+            if(!is.na(as.logical(all.equal(listboldEdges[[mod]][,1],listboldEdges[[mod]][,2])))) {  # handles case where all boldEdges are self loops
+              cat('NO PPI FOUND FOR THIS MODULE.\n')
+              noPPIfound.thisMod=TRUE  # HANDLE NO (non-self-loop) BOLD EDGES CASE
+            } else {
+              for(i in nrow(listboldEdges[[mod]]):1) {
+                if (i<=nrow(listboldEdges[[mod]])) {
+                  if(listboldEdges[[mod]][i,1]==listboldEdges[[mod]][i,2]) {  #identify self-loop
+                    listboldEdges[[mod]] <-listboldEdges[[mod]][-i,]  #and remove self-loop, one at a time
+                  }
                 }
               }
             }
